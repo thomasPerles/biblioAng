@@ -11,15 +11,24 @@ export class LivresComponent implements OnInit {
 
   livres: LivreModel[] = [];
   currentPage: number = 0;
-  pommePerPage :number = 10;
+  pommePerPage: number = 10;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.livres = [
-      new LivreModel(0, "titre0", "auteur0", new Date(2000,0,1), 0),
-      new LivreModel(1, "titre1", "auteur1", new Date(2001,1,2), 1)
+      new LivreModel(0, "titre0", "auteur0", new Date(2000, 0, 1), 0),
+      new LivreModel(1, "titre1", "auteur1", new Date(2001, 1, 2), 1)
     ]
+  }
+
+  supprimer(livreModel: LivreModel) {
+    const index = this.livres.indexOf(livreModel);
+    this.livres.splice(index, 1);
+  }
+
+  ajouter(livreModel: LivreModel) {
+    this.livres.push(livreModel);
   }
 
 }

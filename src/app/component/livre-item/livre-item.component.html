@@ -1,4 +1,4 @@
-<article style="border: 2px double red; margin: 5px; padding: 5px;">
+<article [hidden]="isEdition" style="border: 2px double red; margin: 5px; padding: 5px;">
     <p>id : {{livre?.id}}</p>
     <p>titre : {{livre?.titre}}</p>
     <p>auteur : {{livre?.auteur}}</p>
@@ -15,4 +15,9 @@
             mauris at ligula lobortis, ut volutpat orci blandit. Sed faucibus eros tincidunt turpis vestibulum
             convallis.</p>
     </details>
+    <button class="btn btn-primary" (click)="editer()">Editer</button>
+    <button class="btn btn-primary" (click)="supprimer()">Supprimer</button>
 </article>
+<div [hidden]="!isEdition">
+    <app-livre-form [livre]="livre" (validationOkEvent)="valider($event)"></app-livre-form>
+</div>

@@ -1,3 +1,4 @@
 <main>
-    <app-livre-item *ngFor="let livre of livres" [livre]="livre" ></app-livre-item>
+    <a [routerLink]="['/livreFormulaire']">Ajouter</a>
+    <app-livre-item *ngFor="let livre of livres" [livre]="livre" (suppressionOkEvent)="supprimer($event)"></app-livre-item>
 </main>

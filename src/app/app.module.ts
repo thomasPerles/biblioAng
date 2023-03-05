@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +8,7 @@ import { AccueilComponent } from './component/accueil/accueil.component';
 import { HeaderComponent } from './component/header/header.component';
 import { LivresComponent } from './component/livres/livres.component';
 import { LivreItemComponent } from './component/livre-item/livre-item.component';
+import { LivreFormComponent } from './component/livre-form/livre-form.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { LivreItemComponent } from './component/livre-item/livre-item.component'
     AccueilComponent,
     HeaderComponent,
     LivresComponent,
-    LivreItemComponent
+    LivreItemComponent,
+    LivreFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

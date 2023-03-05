@@ -1,0 +1,34 @@
+<main>
+    <form (ngSubmit)="validerForm()">
+        <fieldset>
+            <legend>Formulaire d'un livre :</legend>
+            <p class="mb-3">
+                <label class="form-label" for="id">id</label>
+                <input class="form-control" name="id" type="text" value="{{livre!.id}}" readonly />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="titre">titre</label>
+                <input class="form-control" name="titre" type="text" [(ngModel)]="livre!.titre" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="auteur">auteur</label>
+                <input class="form-control" name="auteur" type="text" [(ngModel)]="livre!.auteur" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="dateDePublication">date de publication</label>
+                <input class="form-control" name="dateDePublication" type="datetime-local"
+                    [ngModel]="livre!.dateDePublication | date:'yyyy-MM-dd'"
+                    (ngModelChange)="livre!.dateDePublication = $event" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="nombreDePages">nombre de pages</label>
+                <input class="form-control" id="nombreDePages" name="nombreDePages" type="number"
+                    [(ngModel)]="livre!.nombreDePages" required />
+            </p>
+            <p class="mb-3">
+                <input type="submit" id="btnValidation" class="btn btn-primary" />
+                <input type="button" id="btnAnnulation" class="btn btn-primary" (click)="annulerFormulaire()" value="Annuler" />
+            </p>
+        </fieldset>
+    </form>
+</main>
