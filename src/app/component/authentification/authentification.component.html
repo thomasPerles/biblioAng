@@ -1,0 +1,82 @@
+<main>
+    <form (ngSubmit)="validerConnexionForm()" *ngIf="isConnexion">
+        <fieldset>
+            <legend>Connexion</legend>
+            <p>
+                <label for="pseudo">Pseudo</label>
+                <input name="pseudo" type="text" [(ngModel)]="utilisateur!.pseudo" required />
+            </p>
+            <p>
+                <label for="motDePasse">Mot de passe</label>
+                <input name="motDePasse" type="password" [(ngModel)]="utilisateur!.motDePasse" />
+            </p>
+            <p>
+                <input type="submit" id="btnValidation" value="Se connecter" />
+                <input type="button" id="btnToggleInscription" (click)="toggleIsConnexion()" value="Inscription" />
+            </p>
+        </fieldset>
+    </form>
+    <form (ngSubmit)="validerInscriptionForm()" *ngIf="!isConnexion">
+        <fieldset>
+            <legend>Inscription</legend>
+            <p>
+                <label for="pseudo">Pseudo</label>
+                <input name="pseudo" type="text" [(ngModel)]="utilisateur!.pseudo" required />
+            </p>
+            <p>
+                <label for="motDePasse">Mot de passe</label>
+                <input name="motDePasse" type="password" [(ngModel)]="utilisateur!.motDePasse" />
+            </p>
+            <p>
+                <label for="adresseElectronique">Adresse électronique</label>
+                <input name="adresseElectronique" type="email" [(ngModel)]="utilisateur!.adresseElectronique" />
+            </p>
+            <p>
+                <label for="nom">Nom</label>
+                <input name="nom" type="text" [(ngModel)]="utilisateur!.nom" />
+            </p>
+            <p>
+                <label for="prenom">Prénom</label>
+                <input name="prenom" type="text" [(ngModel)]="utilisateur!.prenom" />
+            </p>
+            <p>
+                <label for="bibliotheque">Bibliothèque</label>
+                <input name="bibliotheque" type="text" [(ngModel)]="utilisateur!.bibliotheque" />
+            </p>
+            <p>
+                <label for="dateDeNaissance">Date de naissance</label>
+                <input name="dateDeNaissance" type="text" [(ngModel)]="utilisateur!.dateDeNaissance" />
+            </p>
+            <p>
+                <label for="sexe">Sexe</label>
+                <input name="sexe" type="text" [(ngModel)]="utilisateur!.sexe" />
+            </p>
+            <p>
+                <label for="telephone">Téléphone</label>
+                <input name="telephone" type="text" [(ngModel)]="utilisateur!.telephone" />
+            </p>
+            <p>
+                <label for="adresse">Adresse</label>
+                <input name="nadressem" type="text" [(ngModel)]="utilisateur!.adresse" />
+            </p>
+            <p>
+                <label for="codePostal">Code postal</label>
+                <input name="codePostal" type="text" [(ngModel)]="utilisateur!.codePostal" />
+            </p>
+            <p>
+                <label for="ville">Ville</label>
+                <input name="ville" type="text" [(ngModel)]="utilisateur!.ville" />
+            </p>
+            <p>
+                <input type="submit" id="btnValiderInscription" value="S'inscrire" />
+                <input type="button" id="btnToggleConnexion" (click)="toggleIsConnexion()" value="Connexion" />
+            </p>
+        </fieldset>
+    </form>
+
+    <p><a [routerLink]="['/accueil']">Déconnexion</a>
+    </p>
+    <p>
+        <a [routerLink]="['/accueil']">Retour</a>
+    </p>
+</main>
