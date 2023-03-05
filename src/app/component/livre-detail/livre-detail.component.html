@@ -1,0 +1,104 @@
+<main>
+    <section>
+        <div>
+            <img src="" alt="Couverture du livre" width="200" height="300" style="border: 1px solid black;">
+            <p>Note générale : {{noteGenerale | number:'1.0-1'}}</p>
+            <p>{{livreDetail?.avis?.length}} avis</p>
+        </div>
+        <div>
+            <p>{{livreDetail?.typeDeSupportMultimedia}}</p>
+            <p>{{livreDetail?.livre?.titre}} / {{livreDetail?.livre?.auteur}}</p>
+            <p>Edité par {{livreDetail?.editeur}} - {{livreDetail?.livre?.dateDePublication | date:'yyyy'}}</p>
+            <div>
+                <h2>Description</h2>
+                <table>
+                    <tr>
+                        <td>Type de document</td>
+                        <td>{{livreDetail?.typeDeDocument}}</td>
+                    </tr>
+                    <tr>
+                        <td>Langue</td>
+                        <td>{{livreDetail?.langue}}</td>
+                    </tr>
+                    <tr>
+                        <td>Description physique</td>
+                        <td>{{livreDetail?.livre?.nombreDePages}} pages</td>
+                    </tr>
+                    <tr>
+                        <td>Date de publication</td>
+                        <td>{{livreDetail?.livre?.dateDePublication | date:'yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Appartient à</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Contributeurs</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Sections</td>
+                        <td>{{livreDetail?.sections}}</td>
+                    </tr>
+                    <tr>
+                        <td>ISBN</td>
+                        <td>{{livreDetail?.ISBN}}</td>
+                    </tr>
+                    <tr>
+                        <td>Popularité</td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <h2>Sujet</h2>
+                <p>{{livreDetail?.classifications}}</p>
+            </div>
+        </div>
+        <div>
+            <p>{{livreDetail?.exemplaires?.length}} exemplaires disponibles</p>
+        </div>
+    </section>
+    <section>
+        <h2>Se procurer le document</h2>
+        <table>
+            <thead>
+                <tr>
+                    <td>Bibliotheque</td>
+                    <td>Section</td>
+                    <td>Cote</td>
+                    <td>Type</td>
+                    <td>Statut</td>
+                    <td>Date retour</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let exemplaire of livreDetail?.exemplaires">
+                    <td>{{exemplaire.bibliotheque}}</td>
+                    <td>{{livreDetail?.sections}}</td>
+                    <td></td>
+                    <td>{{livreDetail?.typeDeDocument}}</td>
+                    <td>{{exemplaire.statut}}</td>
+                    <td>{{exemplaire.dateDeRetour | date:'shortDate'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section>
+        <h2>Suggestions</h2>
+        <h3>Du même auteur</h3>
+        <article *ngFor="let livreDuMemeAuteur of livresDuMemeAuteur">
+            <img src="" alt="Couverture du livre" width="200" height="300" style="border: 1px solid black;">
+            <p>{{livreDuMemeAuteur.auteur}} - {{livreDuMemeAuteur.titre}}</p>
+        </article>
+    </section>
+    <section>
+        <h2>Avis</h2>
+        <h3>Avis des lecteurs</h3>
+        <article *ngFor="let avisElement of livreDetail?.avis">
+            <h4>{{avisElement?.titre}} - Note : {{avisElement?.note}}</h4>
+            <p>{{avisElement?.contenu}}</p>
+            <p>{{avisElement?.utilisateur?.pseudo}} - {{avisElement?.dateDePublication | date:'medium'}}</p>
+        </article>
+    </section>
+</main>

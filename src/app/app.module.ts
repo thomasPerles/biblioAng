@@ -10,6 +10,7 @@ import { LivresComponent } from './component/livres/livres.component';
 import { LivreItemComponent } from './component/livre-item/livre-item.component';
 import { LivreFormComponent } from './component/livre-form/livre-form.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LivreDetailComponent } from './component/livre-detail/livre-detail.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     LivresComponent,
     LivreItemComponent,
-    LivreFormComponent
+    LivreFormComponent,
+    LivreDetailComponent
   ],
   imports: [
     BrowserModule,
