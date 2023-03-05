@@ -16,7 +16,7 @@
             </p>
             <p class="mb-3">
                 <label class="form-label" for="dateDePublication">date de publication</label>
-                <input class="form-control" name="dateDePublication" type="datetime-local"
+                <input class="form-control" name="dateDePublication" type="date"
                     [ngModel]="livre!.dateDePublication | date:'yyyy-MM-dd'"
                     (ngModelChange)="livre!.dateDePublication = $event" required />
             </p>

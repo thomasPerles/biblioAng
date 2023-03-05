@@ -9,6 +9,7 @@ import { HeaderComponent } from './component/header/header.component';
 import { LivresComponent } from './component/livres/livres.component';
 import { LivreItemComponent } from './component/livre-item/livre-item.component';
 import { LivreFormComponent } from './component/livre-form/livre-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LivreFormComponent } from './component/livre-form/livre-form.component'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
