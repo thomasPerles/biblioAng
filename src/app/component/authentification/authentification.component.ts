@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageUtilisateur } from 'src/app/class/message-utilisateur';
+import { NotificationUtilisateur } from 'src/app/class/notification-utilisateur';
 import { UtilisateurModel } from 'src/app/class/utilisateur-model';
 import { AuthentificationService } from 'src/app/service/authentification.service';
 
@@ -32,6 +33,7 @@ export class AuthentificationComponent implements OnInit {
         next: (utilisateur: UtilisateurModel) => {
           this.utilisateur = utilisateur;
           this.router.navigate(["accueil"]);
+          NotificationUtilisateur.notifier(MessageUtilisateur.UTILISATEUR_CONNECTE);
         },
         error: (error) => {
           console.log(JSON.stringify(error));
@@ -48,6 +50,7 @@ export class AuthentificationComponent implements OnInit {
         next: (utilisateur: UtilisateurModel) => {
           this.utilisateur = utilisateur;
           this.router.navigate(["accueil"]);
+          NotificationUtilisateur.notifier(MessageUtilisateur.UTILISATEUR_INSCRIT);
         },
         error: (error) => {
           console.log(JSON.stringify(error));
