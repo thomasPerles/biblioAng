@@ -11,14 +11,14 @@ export class LivreDetailModel {
     typeDeDocument?: string;
     langue?: string;
     sections?: string[];
-    ISBN?: string;
+    isbn?: string;
     classifications?: string[];
     avis?: AvisModel[];
     exemplaires?: LivreExemplaireModel[];
 
     constructor();
-    constructor(livre: LivreModel, typeDeSupportMultimedia: string, resumeAuteur: string, editeur: string, typeDeDocument: string, langue: string, sections: string[], ISBN: string, classifications: string[], avis: AvisModel[], exemplaires: LivreExemplaireModel[]);
-    constructor(livre: LivreModel = new LivreModel(), typeDeSupportMultimedia: string = "", resumeAuteur: string = "", editeur: string = "", typeDeDocument: string = "", langue: string = "", sections: string[] = [], ISBN: string = "", classifications: string[] = [], avis: AvisModel[] = [], exemplaires: LivreExemplaireModel[] = []) {
+    constructor(livre: LivreModel, typeDeSupportMultimedia: string, resumeAuteur: string, editeur: string, typeDeDocument: string, langue: string, sections: string[], isbn: string, classifications: string[], avis: AvisModel[], exemplaires: LivreExemplaireModel[]);
+    constructor(livre: LivreModel = new LivreModel(), typeDeSupportMultimedia: string = "", resumeAuteur: string = "", editeur: string = "", typeDeDocument: string = "", langue: string = "", sections: string[] = [], isbn: string = "", classifications: string[] = [], avis: AvisModel[] = [], exemplaires: LivreExemplaireModel[] = []) {
         this.livre = livre;
         this.typeDeSupportMultimedia = typeDeSupportMultimedia;
         this.resumeAuteur = resumeAuteur;
@@ -26,7 +26,7 @@ export class LivreDetailModel {
         this.typeDeDocument = typeDeDocument;
         this.langue = langue;
         this.sections = sections;
-        this.ISBN = ISBN;
+        this.isbn = isbn;
         this.classifications = classifications;
         this.avis = avis;
         this.exemplaires = exemplaires;
