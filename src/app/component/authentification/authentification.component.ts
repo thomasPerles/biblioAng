@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MessageUtilisateur } from 'src/app/class/message-utilisateur';
 import { UtilisateurModel } from 'src/app/class/utilisateur-model';
 import { AuthentificationService } from 'src/app/service/authentification.service';
 
@@ -34,7 +35,7 @@ export class AuthentificationComponent implements OnInit {
         },
         error: (error) => {
           console.log(JSON.stringify(error));
-          alert(JSON.stringify(error));
+          alert(MessageUtilisateur.UTILISATEUR_NON_EXISTANT);
         },
         complete: () => console.log('AuthentificationComponent#validerConnexionForm finished')
       });
@@ -50,7 +51,7 @@ export class AuthentificationComponent implements OnInit {
         },
         error: (error) => {
           console.log(JSON.stringify(error));
-          alert(JSON.stringify(error));
+          alert(MessageUtilisateur.UTILISATEUR_DEJA_EXISTANT);
         },
         complete: () => console.log('AuthentificationComponent#validerInscriptionForm finished')
       });
