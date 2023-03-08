@@ -1,0 +1,43 @@
+<main>
+    <form (ngSubmit)="validerFormulaire()" style="width:30%;">
+        <fieldset>
+            <legend>Formulaire d'emprunt d'un livre :</legend>
+            <p *ngIf="empruntLivre!.id != undefined" class="mb-3">
+                <label class="form-label" for="id">id</label>
+                <input class="form-control" name="id" type="text" value="{{empruntLivre!.id}}" readonly />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="utilisateur">utilisateur</label>
+                <input class="form-control" name="utilisateur" type="text" value="{{empruntLivre!.utilisateur!.pseudo}}" readonly />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="exemplaire">exemplaire</label>
+                <select class="form-select" name="exemplaire" [value]="empruntLivre!.exemplaire" [(ngModel)]="empruntLivre!.exemplaire" required>
+                    <option *ngFor="let exemplaireItem of exemplaires" value="{{exemplaireItem}}">{{exemplaireItem.bibliotheque}} - {{exemplaireItem.statut}}</option>
+                </select>
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="dateDebut">date debut d'emprunt</label>
+                <input class="form-control" name="dateDebut" type="date"
+                    [ngModel]="empruntLivre!.dateDebut | date:'yyyy-MM-dd'"
+                    (ngModelChange)="empruntLivre!.dateDebut = $event" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="dateFin">date fin d'emprunt</label>
+                <input class="form-control" name="dateFin" type="date"
+                    [ngModel]="empruntLivre!.dateFin | date:'yyyy-MM-dd'"
+                    (ngModelChange)="empruntLivre!.dateFin = $event" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="dateRetour">date de retour d'emprunt</label>
+                <input class="form-control" name="dateRetour" type="date"
+                    [ngModel]="empruntLivre!.dateRetour | date:'yyyy-MM-dd'"
+                    (ngModelChange)="empruntLivre!.dateRetour = $event" />
+            </p>
+            <p class="mb-3">
+                <input type="submit" id="btnValidation" class="btn btn-primary" (click)="validerFormulaire()" />
+                <input type="button" id="btnAnnulation" class="btn btn-primary" (click)="annulerFormulaire()" value="Annuler" />
+            </p>
+        </fieldset>
+    </form>
+</main>

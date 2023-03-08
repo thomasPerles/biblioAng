@@ -18,6 +18,7 @@
     <button class="btn btn-primary" (click)="editer()">Editer</button>
     <button class="btn btn-primary" (click)="supprimer()">Supprimer</button>
     <a [routerLink]="['/livreDetail', livre?.id]">Plus d'infos</a>
+    <a [routerLink]="['/livreEmpruntFormulaire/0']">Emprunter</a>
 </article>
 <div [hidden]="!isEdition">
     <app-livre-form [livreFromInput]="livre" (validationOkEvent)="valider($event)" (annulationEvent)="valider($event)"></app-livre-form>

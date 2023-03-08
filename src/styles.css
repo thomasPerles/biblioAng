@@ -52,3 +52,7 @@ canvas {
     background-color: beige;
     margin: 5px;
 }
+
+a {
+    padding: 5px;
+}
