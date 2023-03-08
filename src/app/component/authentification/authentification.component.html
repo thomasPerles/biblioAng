@@ -74,7 +74,8 @@
         </fieldset>
     </form>
 
-    <p><a [routerLink]="['/accueil']">Déconnexion</a>
+    <p>
+        <a [routerLink]="['/accueil']" (click)="deconnecterUtilisateur()">Déconnexion</a>
     </p>
     <p>
         <a [routerLink]="['/accueil']">Retour</a>

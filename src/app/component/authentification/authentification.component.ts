@@ -29,7 +29,7 @@ export class AuthentificationComponent implements OnInit {
 
   validerConnexionForm() {
     if (this.utilisateur != undefined) {
-      this.authentificationService.connexion(this.utilisateur).subscribe({
+      this.authentificationService.connecterUtilisateur(this.utilisateur).subscribe({
         next: (utilisateur: UtilisateurModel) => {
           this.utilisateur = utilisateur;
           this.router.navigate(["accueil"]);
@@ -46,7 +46,7 @@ export class AuthentificationComponent implements OnInit {
 
   validerInscriptionForm() {
     if (this.utilisateur != undefined) {
-      this.authentificationService.inscription(this.utilisateur).subscribe({
+      this.authentificationService.inscrireUtilisateur(this.utilisateur).subscribe({
         next: (utilisateur: UtilisateurModel) => {
           this.utilisateur = utilisateur;
           this.router.navigate(["accueil"]);
@@ -59,6 +59,10 @@ export class AuthentificationComponent implements OnInit {
         complete: () => console.log('AuthentificationComponent#validerInscriptionForm finished')
       });
     }
+  }
+
+  deconnecterUtilisateur() {
+    NotificationUtilisateur.notifier(MessageUtilisateur.UTILISATEUR_DECONNECTE);
   }
 
 }

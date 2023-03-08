@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UtilisateurModel } from 'src/app/class/utilisateur-model';
 
 @Component({
@@ -6,13 +6,8 @@ import { UtilisateurModel } from 'src/app/class/utilisateur-model';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   utilisateur?: UtilisateurModel;
-
-  ngOnInit(): void {
-    /* Pour tester */
-    // this.utilisateur = new UtilisateurModel(0, "tom");
-  }
 
 }
