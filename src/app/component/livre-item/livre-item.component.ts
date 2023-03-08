@@ -24,6 +24,7 @@ export class LivreItemComponent {
 
   valider(livreModel: LivreModel) {
     this.isEdition = false;
+    this.livre = livreModel;
   }
 
   supprimer() {

@@ -12,7 +12,7 @@ export class AuthentificationService {
 
   constructor(private http: HttpClient) { }
 
-  connexion(utilisateur: UtilisateurModel): Observable<UtilisateurModel> {
+  connecterUtilisateur(utilisateur: UtilisateurModel): Observable<UtilisateurModel> {
     const httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json", "Accept": "application/json" }) };
     return this.http.post<UtilisateurModel>(this.baseUrl, utilisateur, httpOptions);
     /* POUR TESTER */
@@ -22,7 +22,7 @@ export class AuthentificationService {
     // });
   }
 
-  inscription(utilisateur: UtilisateurModel): Observable<UtilisateurModel> {
+  inscrireUtilisateur(utilisateur: UtilisateurModel): Observable<UtilisateurModel> {
     const httpOptions = { headers: new HttpHeaders({ "Content-Type": "application/json", "Accept": "application/json" }) };
     return this.http.put<UtilisateurModel>(this.baseUrl, utilisateur, httpOptions);
   }

@@ -20,5 +20,5 @@
     <a [routerLink]="['/livreDetail', livre?.id]">Plus d'infos</a>
 </article>
 <div [hidden]="!isEdition">
-    <app-livre-form [livre]="livre" (validationOkEvent)="valider($event)"></app-livre-form>
+    <app-livre-form [livreFromInput]="livre" (validationOkEvent)="valider($event)" (annulationEvent)="valider($event)"></app-livre-form>
 </div>

@@ -1,8 +1,8 @@
 <main>
-    <form (ngSubmit)="validerForm()">
+    <form (ngSubmit)="validerForm()" style="width:30%;">
         <fieldset>
             <legend>Formulaire d'un livre :</legend>
-            <p class="mb-3">
+            <p *ngIf="!isSave" class="mb-3">
                 <label class="form-label" for="id">id</label>
                 <input class="form-control" name="id" type="text" value="{{livre!.id}}" readonly />
             </p>

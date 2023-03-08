@@ -10,20 +10,24 @@ import { LivreService } from 'src/app/service/livre.service';
 })
 export class LivreFormComponent implements OnInit {
 
-  isSave:boolean = true;
+  isSave: boolean = true;
 
   @Input()
+  livreFromInput?: LivreModel;
   livre?: LivreModel;
   @Output()
   validationOkEvent: EventEmitter<LivreModel> = new EventEmitter<LivreModel>();
+  @Output()
+  annulationEvent: EventEmitter<LivreModel> = new EventEmitter<LivreModel>();
 
-  constructor(private route: ActivatedRoute, private router: Router, private livreService: LivreService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private livreService: LivreService) { }
 
   ngOnInit(): void {
     if (this.livre == undefined && this.route.snapshot.url.join('/') == "livreFormulaire") {
-      this.livre = this.route.snapshot.data['voiture'] ?? new LivreModel();
+      this.livre = this.route.snapshot.data['livre'] ?? new LivreModel();
       this.isSave = true;
     } else {
+      this.livre = JSON.parse(JSON.stringify(this.livreFromInput));
       this.isSave = false;
     }
   }
@@ -40,7 +44,7 @@ export class LivreFormComponent implements OnInit {
     if (this.livre != undefined) {
       this.livreService.save(this.livre).subscribe({
         next: (livre: LivreModel) => {
-          this.livre = livre; 
+          this.livre = livre;
           // pour attendre la sauvegarde en BDD avant de retourner sur la liste des livres
           this.router.navigate(["livres"]);
         },
@@ -52,7 +56,7 @@ export class LivreFormComponent implements OnInit {
 
   mettreAJourLivre() {
     this.validationOkEvent.emit(this.livre);
-    
+
     if (this.livre != undefined) {
       this.livreService.update(this.livre).subscribe({
         next: (livre: LivreModel) => this.livre = livre,
@@ -63,8 +67,13 @@ export class LivreFormComponent implements OnInit {
   }
 
   annulerFormulaire() {
-    this.livre = undefined;
-    this.router.navigate(['livres']);
+    if (this.isSave) {
+      this.livre = undefined;
+      this.router.navigate(['livres']);
+    } else {
+      this.livre = JSON.parse(JSON.stringify(this.livreFromInput));
+      this.annulationEvent.emit(this.livre);
+    }
   }
 
 }
