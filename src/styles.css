@@ -56,3 +56,14 @@ canvas {
 a {
     padding: 5px;
 }
+
+.border-item {
+    border: 1px solid darkblue;
+}
+
+.margin5px {
+    margin: 5px;
+}
+.margin2px {
+    margin: 2px;
+}

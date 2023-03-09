@@ -15,10 +15,10 @@
             mauris at ligula lobortis, ut volutpat orci blandit. Sed faucibus eros tincidunt turpis vestibulum
             convallis.</p>
     </details>
-    <button class="btn btn-primary" (click)="editer()">Editer</button>
-    <button class="btn btn-primary" (click)="supprimer()">Supprimer</button>
-    <a [routerLink]="['/livreDetail', livre?.id]">Plus d'infos</a>
-    <a [routerLink]="['/livreEmpruntFormulaire/0']">Emprunter</a>
+    <button class="btn btn-primary margin2px" (click)="editer()">Editer</button>
+    <button class="btn btn-primary margin2px" (click)="supprimer()">Supprimer</button>
+    <a [routerLink]="['/livreDetail', livre?.id]" class="btn btn-primary margin2px">Plus d'infos</a>
+    <a [routerLink]="['/livreEmpruntFormulaire/0']" class="btn btn-primary margin2px">Emprunter</a>
 </article>
 <div [hidden]="!isEdition">
     <app-livre-form [livreFromInput]="livre" (validationOkEvent)="valider($event)" (annulationEvent)="valider($event)"></app-livre-form>

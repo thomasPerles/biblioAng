@@ -1,15 +1,15 @@
-<main>
-    <section>
-        <div>
+<main class="container">
+    <section class="row">
+        <div class="col-3">
             <img src="" alt="Couverture du livre" width="200" height="300" style="border: 1px solid black;">
             <p>Note générale : {{noteGenerale | number:'1.0-1'}}</p>
             <p>{{livreDetail?.avis?.length}} avis</p>
         </div>
-        <div>
+        <div class="col-6 row">
             <p>{{livreDetail?.typeDeSupportMultimedia}}</p>
             <p>{{livreDetail?.livre?.titre}} / {{livreDetail?.livre?.auteur}}</p>
             <p>Edité par {{livreDetail?.editeur}} - {{livreDetail?.livre?.dateDePublication | date:'yyyy'}}</p>
-            <div>
+            <div class="col-sm-6">
                 <h2>Description</h2>
                 <table>
                     <tr>
@@ -50,12 +50,12 @@
                     </tr>
                 </table>
             </div>
-            <div>
+            <div class="col-sm-6">
                 <h2>Sujet</h2>
                 <p>{{livreDetail?.classifications}}</p>
             </div>
         </div>
-        <div>
+        <div class="col-3">
             <p>{{livreDetail?.exemplaires?.length}} exemplaires disponibles</p>
         </div>
     </section>
@@ -63,7 +63,7 @@
         <h2>Se procurer le document</h2>
         <table>
             <thead>
-                <tr>
+                <tr class="border-item">
                     <td>Bibliotheque</td>
                     <td>Section</td>
                     <td>Cote</td>
@@ -73,7 +73,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let exemplaire of livreDetail?.exemplaires">
+                <tr *ngFor="let exemplaire of livreDetail?.exemplaires" class="border-item">
                     <td>{{exemplaire.bibliotheque}}</td>
                     <td>{{livreDetail?.sections}}</td>
                     <td></td>
@@ -87,7 +87,7 @@
     <section>
         <h2>Suggestions</h2>
         <h3>Du même auteur</h3>
-        <article *ngFor="let livreDuMemeAuteur of livresDuMemeAuteur">
+        <article *ngFor="let livreDuMemeAuteur of livresDuMemeAuteur" class="border-item margin5px">
             <img src="" alt="Couverture du livre" width="200" height="300" style="border: 1px solid black;">
             <p>{{livreDuMemeAuteur.auteur}} - {{livreDuMemeAuteur.titre}}</p>
         </article>
@@ -95,7 +95,7 @@
     <section>
         <h2>Avis</h2>
         <h3>Avis des lecteurs</h3>
-        <article *ngFor="let avisElement of livreDetail?.avis">
+        <article *ngFor="let avisElement of livreDetail?.avis" class="border-item margin5px">
             <h4>{{avisElement?.titre}} - Note : {{avisElement?.note}}</h4>
             <p>{{avisElement?.contenu}}</p>
             <p>{{avisElement?.utilisateur?.pseudo}} - {{avisElement?.dateDePublication | date:'medium'}}</p>

@@ -1,22 +1,24 @@
-<header>
-    <section>
-        <button>Accessibilite</button>
-        <button>Aide</button>
-        <a [routerLink]="['/authentification', utilisateur?.id]">{{utilisateur?.pseudo ?? "Se connecter / S'inscrire"}}</a>
+<header class="container text-center">
+    <section class="row">
+        <button class="col btn btn-secondary margin2px">Accessibilite</button>
+        <button class="col btn btn-secondary margin2px">Aide</button>
+        <a [routerLink]="['/authentification', utilisateur?.id]" class="col btn btn-primary margin2px">{{utilisateur?.pseudo ?? "Se connecter / S'inscrire"}}</a>
     </section>
-    <section>
-        <a [routerLink]="['/accueil']"><img src="" alt="Logo de l'application" /></a>
-        <input placeholder="Tapez votre recherche" />
-        <a [routerLink]="['/livres']">Recherche</a>
-        <button>+ de recherche avancée</button>
+    <section class="row">
+        <p class="col"><a [routerLink]="['/accueil']"><img src="" alt="Logo de l'application"></a></p>
+        <p class="col">
+            <input placeholder="Tapez votre recherche" class="margin2px"/>
+            <a [routerLink]="['/livres']" class="btn btn-primary margin2px">Recherche</a>
+        </p>
+        <button class="col btn btn-secondary">+ de recherche avancée</button>
     </section>
-    <section>
-        <button>Pratique</button>
-        <button>Bibliothèques</button>
-        <button>Agenda</button>
-        <button>Nouveautés</button>
-        <button>En ligne</button>
-        <button>Découvrir</button>
-        <button>Patrimoine</button>
+    <section class="row">
+        <button class="col btn btn-secondary margin2px">Pratique</button>
+        <button class="col btn btn-secondary margin2px">Bibliothèques</button>
+        <button class="col btn btn-secondary margin2px">Agenda</button>
+        <button class="col btn btn-secondary margin2px">Nouveautés</button>
+        <button class="col btn btn-secondary margin2px">En ligne</button>
+        <button class="col btn btn-secondary margin2px">Découvrir</button>
+        <button class="col btn btn-secondary margin2px">Patrimoine</button>
     </section>
 </header>

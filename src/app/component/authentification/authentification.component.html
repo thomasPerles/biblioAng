@@ -11,8 +11,10 @@
                 <input name="motDePasse" type="password" [(ngModel)]="utilisateur!.motDePasse" />
             </p>
             <p>
-                <input type="submit" id="btnValidation" value="Se connecter" />
-                <input type="button" id="btnToggleInscription" (click)="toggleIsConnexion()" value="Inscription" />
+                <input type="submit" id="btnValidation" value="Se connecter" class="btn btn-primary margin2px" />
+                <button (click)="toggleIsConnexion()" class="btn btn-primary margin2px">Inscription</button>
+                <a [routerLink]="['/accueil']" (click)="deconnecterUtilisateur()" class="btn btn-primary margin2px">Déconnexion</a>
+                <a [routerLink]="['/accueil']" class="btn btn-primary margin2px">Retour</a>
             </p>
         </fieldset>
     </form>
@@ -68,16 +70,12 @@
                 <input name="ville" type="text" [(ngModel)]="utilisateur!.ville" />
             </p>
             <p>
-                <input type="submit" id="btnValiderInscription" value="S'inscrire" />
-                <input type="button" id="btnToggleConnexion" (click)="toggleIsConnexion()" value="Connexion" />
+                <input type="submit" id="btnValiderInscription" value="S'inscrire" class="btn btn-primary margin2px" />
+                <button (click)="toggleIsConnexion()" class="btn btn-primary margin2px">Connexion</button>
+                <a [routerLink]="['/accueil']" (click)="deconnecterUtilisateur()" class="btn btn-primary margin2px">Déconnexion</a>
+                <a [routerLink]="['/accueil']" class="btn btn-primary margin2px">Retour</a>
             </p>
         </fieldset>
     </form>
 
-    <p>
-        <a [routerLink]="['/accueil']" (click)="deconnecterUtilisateur()">Déconnexion</a>
-    </p>
-    <p>
-        <a [routerLink]="['/accueil']">Retour</a>
-    </p>
 </main>
