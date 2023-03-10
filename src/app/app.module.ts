@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LivreDetailComponent } from './component/livre-detail/livre-detail.component';
 import { AuthentificationComponent } from './component/authentification/authentification.component';
 import { LivreEmpruntFormComponent } from './component/livre-emprunt-form/livre-emprunt-form.component';
+import { LivreAvisFormComponent } from './component/livre-avis-form/livre-avis-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LivreEmpruntFormComponent } from './component/livre-emprunt-form/livre-
     LivreFormComponent,
     LivreDetailComponent,
     AuthentificationComponent,
-    LivreEmpruntFormComponent
+    LivreEmpruntFormComponent,
+    LivreAvisFormComponent
   ],
   imports: [
     BrowserModule,

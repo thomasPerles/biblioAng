@@ -1,0 +1,37 @@
+<main>
+    <form (ngSubmit)="validerFormulaire()" style="width:30%;">
+        <fieldset>
+            <legend>Formulaire d'avis d'un livre :</legend>
+            <p *ngIf="avis!.id != undefined" class="mb-3">
+                <label class="form-label" for="id">id</label>
+                <input class="form-control" name="id" type="text" value="{{avis!.id}}" readonly />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="titre">Titre</label>
+                <input class="form-control" name="titre" type="text" [(ngModel)]="avis!.titre" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="contenu">Contenu</label>
+                <input class="form-control" name="contenu" type="text" [(ngModel)]="avis!.contenu" required />
+            </p>
+            <p class="mb-3">
+                <label class="form-label" for="note">Note : {{avis!.note}}</label>
+                <input class="form-control" name="note" type="range" min="1" max="5" [(ngModel)]="avis!.note" required />
+            </p>
+            <p *ngIf="avis!.dateDePublication != undefined" class="mb-3">
+                <label class="form-label" for="dateDePublication">Date de publication</label>
+                <input class="form-control" name="dateDePublication" type="date"
+                    [ngModel]="avis!.dateDePublication | date:'yyyy-MM-dd'"
+                    (ngModelChange)="avis!.dateDePublication = $event" />
+            </p>
+            <p *ngIf="utilisateur != undefined" class="mb-3">
+                <label class="form-label" for="utilisateurPseudo">Utilisateur</label>
+                <input class="form-control" name="utilisateurPseudo" type="text" [(ngModel)]="utilisateur!.pseudo" readonly />
+            </p>
+            <p class="mb-3">
+                <input type="submit" id="btnValidation" (click)="validerFormulaire()" class="btn btn-primary margin2px" />
+                <input type="button" id="btnAnnulation" (click)="annulerFormulaire()" class="btn btn-primary margin2px" value="Annuler" />
+            </p>
+        </fieldset>
+    </form>
+</main>
