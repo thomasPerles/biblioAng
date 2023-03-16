@@ -17,22 +17,12 @@
                 </select>
             </p>
             <p class="mb-3">
-                <label class="form-label" for="dateDebut">date debut d'emprunt</label>
-                <input class="form-control" name="dateDebut" type="date"
-                    [ngModel]="empruntLivre!.dateDebut | date:'yyyy-MM-dd'"
-                    (ngModelChange)="empruntLivre!.dateDebut = $event" required />
-            </p>
-            <p class="mb-3">
-                <label class="form-label" for="dateFin">date fin d'emprunt</label>
-                <input class="form-control" name="dateFin" type="date"
-                    [ngModel]="empruntLivre!.dateFin | date:'yyyy-MM-dd'"
-                    (ngModelChange)="empruntLivre!.dateFin = $event" required />
+                <label class="form-label" for="datesDEmprunt">dates d'emprunt</label>
+                <p-calendar [(ngModel)]="rangeDates" [disabledDates]="invalidDates" [disabledDays]="invalidDays" [minDate]="minDate" [maxDate]="maxDate" selectionMode="range" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="datesDEmprunt"></p-calendar>
             </p>
             <p class="mb-3">
                 <label class="form-label" for="dateRetour">date de retour d'emprunt</label>
-                <input class="form-control" name="dateRetour" type="date"
-                    [ngModel]="empruntLivre!.dateRetour | date:'yyyy-MM-dd'"
-                    (ngModelChange)="empruntLivre!.dateRetour = $event" />
+                <p-calendar [(ngModel)]="empruntLivre!.dateRetour" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="dateRetour"></p-calendar>
             </p>
             <p class="mb-3">
                 <input type="submit" id="btnValidation" class="btn btn-primary margin2px" (click)="validerFormulaire()" />

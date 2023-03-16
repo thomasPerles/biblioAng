@@ -14,6 +14,8 @@ import { LivreDetailComponent } from './component/livre-detail/livre-detail.comp
 import { AuthentificationComponent } from './component/authentification/authentification.component';
 import { LivreEmpruntFormComponent } from './component/livre-emprunt-form/livre-emprunt-form.component';
 import { LivreAvisFormComponent } from './component/livre-avis-form/livre-avis-form.component';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { LivreAvisFormComponent } from './component/livre-avis-form/livre-avis-f
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CalendarModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

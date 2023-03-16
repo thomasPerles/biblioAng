@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpruntLivreModel } from 'src/app/class/emprunt-livre-model';
 import { LivreExemplaireModel } from 'src/app/class/livre-exemplaire-model';
@@ -10,11 +10,17 @@ import { UtilisateurModel } from 'src/app/class/utilisateur-model';
   templateUrl: './livre-emprunt-form.component.html',
   styleUrls: ['./livre-emprunt-form.component.css']
 })
-export class LivreEmpruntFormComponent {
+export class LivreEmpruntFormComponent implements OnInit {
 
   isSave: boolean = true;
   empruntLivre!: EmpruntLivreModel;
   exemplaires: LivreExemplaireModel[] = [];
+
+  rangeDates!: Date[];
+  minDate!: Date;
+  maxDate!: Date;
+  invalidDates!: Array<Date>;
+  invalidDays!: Array<number>;
 
   constructor(private route: ActivatedRoute, private router: Router) {
     this.empruntLivre = new EmpruntLivreModel();
@@ -25,6 +31,20 @@ export class LivreEmpruntFormComponent {
       new LivreExemplaireModel(2, 0, "Bibliothèque de Sophia-Antipolis", "Exclu temporairement, En attente de retour")
     ];
     this.empruntLivre.exemplaire = this.exemplaires[0];
+  }
+
+  ngOnInit() {
+    let today = new Date();
+    this.minDate = new Date();
+
+    let invalidDate1 = new Date();
+    invalidDate1.setDate(today.getDate() + 7);
+    let invalidDate2 = new Date();
+    invalidDate2.setDate(today.getDate() + 8);
+    let invalidDate3 = new Date();
+    invalidDate3.setDate(today.getDate() + 9);
+    this.invalidDates = [invalidDate1, invalidDate2, invalidDate3];
+    this.invalidDays = [0, 6];
   }
 
   validerFormulaire() {
