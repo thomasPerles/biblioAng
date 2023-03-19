@@ -12,13 +12,14 @@
             </p>
             <p class="mb-3">
                 <label class="form-label" for="exemplaire">exemplaire</label>
-                <select class="form-select" name="exemplaire" [value]="empruntLivre!.exemplaire" [(ngModel)]="empruntLivre!.exemplaire" required>
-                    <option *ngFor="let exemplaireItem of exemplaires" value="{{exemplaireItem}}">{{exemplaireItem.bibliotheque}} - {{exemplaireItem.statut}}</option>
+                <select name="exemplaire" [(ngModel)]="empruntLivre!.exemplaire" (change)="changerLExemplaire($event)" required class="form-select">
+                    <option [ngValue]="null" disabled>Selectionner un exemplaire</option>
+                    <option *ngFor="let exemplaireItem of exemplaires" [ngValue]="exemplaireItem">{{exemplaireItem.bibliotheque}} - {{exemplaireItem.statut}}</option>
                 </select>
             </p>
             <p class="mb-3">
                 <label class="form-label" for="datesDEmprunt">dates d'emprunt</label>
-                <p-calendar [(ngModel)]="rangeDates" [disabledDates]="invalidDates" [disabledDays]="invalidDays" [minDate]="minDate" [maxDate]="maxDate" selectionMode="range" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="datesDEmprunt"></p-calendar>
+                <p-calendar [(ngModel)]="datesIntervalle" [disabledDates]="datesInvalides" [disabledDays]="joursInvalides" [minDate]="dateMin" [maxDate]="dateMax" selectionMode="range" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="datesDEmprunt"></p-calendar>
             </p>
             <p class="mb-3">
                 <label class="form-label" for="dateRetour">date de retour d'emprunt</label>

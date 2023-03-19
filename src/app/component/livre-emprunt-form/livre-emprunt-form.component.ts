@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpruntLivreModel } from 'src/app/class/emprunt-livre-model';
 import { LivreExemplaireModel } from 'src/app/class/livre-exemplaire-model';
 import { NotificationUtilisateur } from 'src/app/class/notification-utilisateur';
 import { UtilisateurModel } from 'src/app/class/utilisateur-model';
+import { LivreEmpruntService } from 'src/app/service/livre-emprunt.service';
 
 @Component({
   selector: 'app-livre-emprunt-form',
@@ -12,39 +13,66 @@ import { UtilisateurModel } from 'src/app/class/utilisateur-model';
 })
 export class LivreEmpruntFormComponent implements OnInit {
 
+  @Input() idLivre!: number;
   isSave: boolean = true;
   empruntLivre!: EmpruntLivreModel;
   exemplaires: LivreExemplaireModel[] = [];
+  mapExemplaireDatesInvalides!: Map<number, Array<Date>>;
+  datesInvalides!: Array<Date>;
+  mapExemplaireJoursInvalides!: Map<number, Array<number>>;
+  joursInvalides!: Array<number>;
+  dateMin!: Date;
+  dateMax!: Date;
+  datesIntervalle!: Date[];
 
-  rangeDates!: Date[];
-  minDate!: Date;
-  maxDate!: Date;
-  invalidDates!: Array<Date>;
-  invalidDays!: Array<number>;
-
-  constructor(private route: ActivatedRoute, private router: Router) {
+  constructor(private route: ActivatedRoute, private router: Router, private livreEmpruntService: LivreEmpruntService) {
     this.empruntLivre = new EmpruntLivreModel();
     this.empruntLivre.utilisateur = new UtilisateurModel(0, "toto");
-    this.exemplaires = [
-      new LivreExemplaireModel(0, 0, "Bibliothèque de Nice", "Disponible"),
-      new LivreExemplaireModel(1, 0, "Bibliothèque de Antibes", "En prêt", new Date(2023, 3, 1)),
-      new LivreExemplaireModel(2, 0, "Bibliothèque de Sophia-Antipolis", "Exclu temporairement, En attente de retour")
-    ];
-    this.empruntLivre.exemplaire = this.exemplaires[0];
+    this.dateMin = new Date();
+    this.initialiserLesExemplaires(this.idLivre);
+  }
+
+  private initialiserLesExemplaires(idLivre: number) {
+    this.livreEmpruntService.recupererLesExemplaires(idLivre).subscribe({
+      next: (exemplaires: LivreExemplaireModel[]) => {
+        this.exemplaires = exemplaires;
+        this.empruntLivre.exemplaire = this.exemplaires[0];
+        this.initialiserLesDatesInvalides(exemplaires);
+        this.initialiserLesJoursInvalides(exemplaires);
+      },
+      error: (error) => console.log(error),
+      complete: () => console.log('LivreEmpruntFormComponent#initialiserLesExemplaires finished')
+    });
+  }
+
+  private initialiserLesDatesInvalides(exemplaires: LivreExemplaireModel[]) {
+    this.livreEmpruntService.recupererLesDatesInvalides(exemplaires).subscribe({
+      next: (mapExemplaireDatesInvalides: Map<number, Array<Date>>) => {
+        this.mapExemplaireDatesInvalides = mapExemplaireDatesInvalides;
+        this.datesInvalides = mapExemplaireDatesInvalides.get(this.empruntLivre.exemplaire.id) ?? [];
+      },
+      error: (error) => console.log(error),
+      complete: () => console.log('LivreEmpruntFormComponent#initialiserLesDatesInvalides finished')
+    });
+  }
+
+  private initialiserLesJoursInvalides(exemplaires: LivreExemplaireModel[]) {
+    this.livreEmpruntService.recupererLesJoursInvalides(exemplaires).subscribe({
+      next: (mapExemplaireJoursInvalides: Map<number, Array<number>>) => {
+        this.mapExemplaireJoursInvalides = mapExemplaireJoursInvalides;
+        this.joursInvalides = mapExemplaireJoursInvalides.get(this.empruntLivre.exemplaire.id) ?? [];
+      },
+      error: (error) => console.log(error),
+      complete: () => console.log('LivreEmpruntFormComponent#initialiserLesJoursInvalides finished')
+    });
   }
 
   ngOnInit() {
-    let today = new Date();
-    this.minDate = new Date();
+  }
 
-    let invalidDate1 = new Date();
-    invalidDate1.setDate(today.getDate() + 7);
-    let invalidDate2 = new Date();
-    invalidDate2.setDate(today.getDate() + 8);
-    let invalidDate3 = new Date();
-    invalidDate3.setDate(today.getDate() + 9);
-    this.invalidDates = [invalidDate1, invalidDate2, invalidDate3];
-    this.invalidDays = [0, 6];
+  changerLExemplaire(arg: any) {
+    this.datesInvalides = this.mapExemplaireDatesInvalides.get(this.empruntLivre.exemplaire.id) ?? [];
+    this.joursInvalides = this.mapExemplaireJoursInvalides.get(this.empruntLivre.exemplaire.id) ?? [];
   }
 
   validerFormulaire() {
