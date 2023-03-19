@@ -23,14 +23,9 @@ export class LivreEmpruntFormComponent implements OnInit {
   joursInvalides!: Array<number>;
   dateMin!: Date;
   dateMax!: Date;
-  datesIntervalle!: Date[];
+  datesIntervalle: Date[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router, private livreEmpruntService: LivreEmpruntService) {
-    this.empruntLivre = new EmpruntLivreModel();
-    this.empruntLivre.utilisateur = new UtilisateurModel(0, "toto");
-    this.dateMin = new Date();
-    this.initialiserLesExemplaires(this.idLivre);
-  }
+  constructor(private route: ActivatedRoute, private router: Router, private livreEmpruntService: LivreEmpruntService) {}
 
   private initialiserLesExemplaires(idLivre: number) {
     this.livreEmpruntService.recupererLesExemplaires(idLivre).subscribe({
@@ -68,6 +63,10 @@ export class LivreEmpruntFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.empruntLivre = new EmpruntLivreModel();
+    this.empruntLivre.utilisateur = new UtilisateurModel(0, "toto");
+    this.dateMin = new Date();
+    this.initialiserLesExemplaires(this.idLivre);
   }
 
   changerLExemplaire(arg: any) {
@@ -76,7 +75,9 @@ export class LivreEmpruntFormComponent implements OnInit {
   }
 
   validerFormulaire() {
-    const message: string = `L'utilisateur ${this.empruntLivre.utilisateur.pseudo} a réservé l'exemplaire de la ${this.empruntLivre.exemplaire.bibliotheque} du ${this.empruntLivre.dateDebut} au ${this.empruntLivre.dateFin}`;
+    this.empruntLivre.dateDebut = this.datesIntervalle[0] ?? new Date();
+    this.empruntLivre.dateFin = this.datesIntervalle[1] ?? this.datesIntervalle[0] ?? new Date();
+    const message: string = `L'utilisateur ${this.empruntLivre.utilisateur.pseudo} a réservé l'exemplaire de la ${this.empruntLivre.exemplaire.bibliotheque} du ${this.empruntLivre.dateDebut.toLocaleDateString('fr-FR')} au ${this.empruntLivre.dateFin.toLocaleDateString('fr-FR')}`;
     NotificationUtilisateur.notifier(message);
     this.router.navigate(['livres']);
   }

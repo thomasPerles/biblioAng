@@ -19,11 +19,11 @@
             </p>
             <p class="mb-3">
                 <label class="form-label" for="datesDEmprunt">dates d'emprunt</label>
-                <p-calendar [(ngModel)]="datesIntervalle" [disabledDates]="datesInvalides" [disabledDays]="joursInvalides" [minDate]="dateMin" [maxDate]="dateMax" selectionMode="range" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="datesDEmprunt"></p-calendar>
+                <p-calendar [(ngModel)]="datesIntervalle" name="datesDEmprunt" [disabledDates]="datesInvalides" [disabledDays]="joursInvalides" [minDate]="dateMin" [maxDate]="dateMax" selectionMode="range" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="datesDEmprunt"></p-calendar>
             </p>
             <p class="mb-3">
                 <label class="form-label" for="dateRetour">date de retour d'emprunt</label>
-                <p-calendar [(ngModel)]="empruntLivre!.dateRetour" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="dateRetour"></p-calendar>
+                <p-calendar [(ngModel)]="empruntLivre!.dateRetour" name="dateRetour" dateFormat="dd/mm/yy" [showButtonBar]="true" [readonlyInput]="true" inputId="dateRetour"></p-calendar>
             </p>
             <p class="mb-3">
                 <input type="submit" id="btnValidation" class="btn btn-primary margin2px" (click)="validerFormulaire()" />
