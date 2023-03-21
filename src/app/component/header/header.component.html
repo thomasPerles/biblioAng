@@ -6,10 +6,10 @@
     </section>
     <section class="row">
         <p class="col"><a [routerLink]="['/accueil']"><img src="" alt="Logo de l'application"></a></p>
-        <p class="col">
-            <input placeholder="Tapez votre recherche" class="margin2px"/>
-            <a [routerLink]="['/livres']" class="btn btn-primary margin2px">Recherche</a>
-        </p>
+        <div class="col p-inputgroup">
+            <input type="text" pInputText placeholder="Tapez votre recherche">         
+            <button type="button" pButton pRipple label="Recherche" [routerLink]="['/livres']"></button>
+        </div>
         <button class="col btn btn-secondary">+ de recherche avancée</button>
     </section>
     <section class="row">

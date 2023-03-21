@@ -8,7 +8,7 @@
             </p>
             <p>
                 <label for="motDePasse">Mot de passe</label>
-                <input name="motDePasse" type="password" [(ngModel)]="utilisateur!.motDePasse" />
+                <p-password id="motDePasse" name="motDePasse" [(ngModel)]="utilisateur!.motDePasse" [toggleMask]="true"></p-password>
             </p>
             <p>
                 <input type="submit" id="btnValidation" value="Se connecter" class="btn btn-primary margin2px" />
@@ -27,7 +27,7 @@
             </p>
             <p>
                 <label for="motDePasse">Mot de passe</label>
-                <input name="motDePasse" type="password" [(ngModel)]="utilisateur!.motDePasse" />
+                <p-password id="motDePasse" name="motDePasse" [(ngModel)]="utilisateur!.motDePasse" [toggleMask]="true"></p-password>
             </p>
             <p>
                 <label for="adresseElectronique">Adresse électronique</label>
